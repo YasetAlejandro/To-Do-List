@@ -174,3 +174,51 @@ body {
 .filter-btn:hover {
   background-color: #1558b0;
 }
+
+
+/* ===== Botones de acciones (Editar / Eliminar) ===== */
+.task-actions a,
+.task-actions button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+/* Botón Editar */
+.edit-btn {
+  background-color: #1a73e8; /* Azul Google */
+  color: white;
+  border: none;
+}
+
+.edit-btn:hover {
+  background-color: #1558b0;
+  transform: translateY(-1px);
+}
+
+/* Botón Eliminar */
+.delete-btn {
+  background-color: #d93025; /* Rojo Google */
+  color: white;
+  border: none;
+}
+
+.delete-btn:hover {
+  background-color: #a50e1d;
+  transform: translateY(-1px);
+}
+
+/* Checkbox completar tarea */
+.task-actions input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
