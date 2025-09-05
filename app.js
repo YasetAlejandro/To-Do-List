@@ -10,6 +10,19 @@ app.use(express.static("public"));
 const dotenv= require("dotenv");
 dotenv.config({path: './env/.env'})
 
+
+
+// SE USA EL SESSION PARA EL LOGIN
+const session= require("express-session");
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+
+
+
+
 // EL DIRECTORIO PUBLIC DONDE ESTARA EL CSS (no es mucho pero para eso esta la carpeta)
 app.use("/resources", express.static("public"));
 app.use("/resources", express.static(__dirname+ "/public"));
@@ -20,6 +33,9 @@ app.set("view engine", "ejs");
 const connection=require("./database/db");
 
 // AQUI SE COLOCAN LOS MODELOS QUE ES DONDE ESTARA CADA METODO QUE CUMPLE UNA FUNCION
+
+app.use(require("./models/loginModel"))
+
 
 
 app.listen(3000, (req, res)=>{
