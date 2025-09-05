@@ -24,7 +24,7 @@ routes.post("/", (req,res)=>{
             req.session.name = name;
             req.session.user = userId;
 
-            res.redirect("/index")
+            res.redirect("/tasks")
         }
     })
 })
@@ -45,16 +45,16 @@ routes.post("/login", (req, res)=>{
                 req.session.loggedin=true;
                 req.session.name = results[0].name;
                 req.session.user = results[0].id;
-                res.redirect("/index");
+                res.redirect("/tasks");
             }else{
-                res.render("login",{
+                res.render("index",{
                     alert: "wrong_pass",
                     alertTitle: "Error",
                     alertMessage: "Email o contraseña incorrectos",
                     alertIcon: "error",
                     showConfirmButton: true,
                     time: false,
-                    ruta: "login"
+                    ruta: "index"
                 })
             }
 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+
+    <h1>Mis Tareas Pendientes</h1>
+    <!-- Filtro por ID -->
+    <form action="/tasks" method="GET" class="filter-form">
+    <input type="number" name="id" placeholder="Buscar por ID" min="1">
+    <button type="submit" class="btn filter-btn">Buscar</button>
+    </form>
+
+
+    <!-- Formulario para crear nueva tarea -->
+    <form action="/tasks/createTask" method="POST" class="create-task-form">
+      <input type="text" name="title" placeholder="Título" required>
+      <input type="text" name="description" placeholder="Descripción">
+      <input type="date" name="endDate" placeholder="Fecha límite">
+      <select name="priority">
+        <option value="1">Baja</option>
+        <option value="2">Media</option>
+        <option value="3">Alta</option>
+      </select>
+      <button type="submit" class="create-btn">Agregar Tarea</button>
+    </form>
+
+    <!-- Lista de tareas pendientes -->
+    <% if (tasks.length === 0) { %>
+      <p>No tienes tareas pendientes.</p>
+    <% } else { %>
+      <ul class="task-list">
+        <% tasks.forEach(task => { %>
+          <li class="task-item">
+            <div class="task-info">
+              <h3><%= task.title %></h3>
+              <p><%= task.description %></p>
+              <p>Prioridad: 
+                <% if(task.priority == 1){ %>
+                  Baja
+                <% } else if(task.priority == 2){ %>
+                  Media
+                <% } else { %>
+                  Alta
+                <% } %>
+              </p>
+              <p>Fecha límite: <%= task.end_date ? task.end_date.toISOString().slice(0,10) : 'N/A' %></p>
+            </div>
+
+            <div class="task-actions">
+              <!-- Botón Editar -->
+              <a href="/tasks/edit/<%= task.id %>" class="btn edit-btn">Editar</a>
+
+              <!-- Botón Eliminar -->
+              <form action="/tasks/delete/<%= task.id %>" method="POST" class="delete-form">
+                <button type="submit" class="btn delete-btn">Eliminar</button>
+              </form>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+  </div>
+</body>
+</html>

@@ -34,7 +34,8 @@ const connection=require("./database/db");
 
 // AQUI SE COLOCAN LOS MODELOS QUE ES DONDE ESTARA CADA METODO QUE CUMPLE UNA FUNCION
 
-app.use(require("./models/loginModel"))
+app.use(require("./models/loginModel"));
+app.use(require("./models/taskModel"))
 
 
 
